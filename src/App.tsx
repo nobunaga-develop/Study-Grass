@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { useStudyLogs } from './hooks/useStudyLogs';
 import StudyForm from './components/StudyForm';
 import StatsCards from './components/StatsCards';
@@ -19,6 +20,7 @@ export default function App() {
         <GrassCalendar logs={logs} />
         <StudyLogList logs={logs} onDelete={deleteLog} />
       </main>
+      <Analytics />
     </div>
   );
 }
