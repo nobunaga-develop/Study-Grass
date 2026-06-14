@@ -1,0 +1,377 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #161b22;
+  --bg-card: #21262d;
+  --text-primary: #cdd9e5;
+  --text-secondary: #768390;
+  --text-muted: #545d68;
+  --border: #373e47;
+  --green: #3fb950;
+  --green-hover: #2ea043;
+  --red: #f85149;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+
+  --grass-0: #2d333b;
+  --grass-1: #0e4429;
+  --grass-2: #006d32;
+  --grass-3: #26a641;
+  --grass-4: #39d353;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ---------- Layout ---------- */
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 64px;
+}
+
+.app-header {
+  padding: 36px 0 24px;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: -0.02em;
+}
+
+.app-subtitle {
+  margin-top: 4px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.section-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ---------- Form ---------- */
+
+.study-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: var(--bg);
+  resize: vertical;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--green);
+  background: var(--bg);
+  box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn-primary {
+  align-self: flex-start;
+  padding: 8px 20px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover {
+  background: var(--green-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Stats ---------- */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 16px 8px;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1.1;
+}
+
+.stat-label {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-sub {
+  margin-top: 2px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Grass Calendar ---------- */
+
+.grass-calendar {
+  overflow: hidden;
+}
+
+.calendar-scroll-wrapper {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.calendar-layout {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.day-label-col {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.day-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: right;
+  padding-right: 4px;
+  user-select: none;
+}
+
+.month-label-row {
+  overflow: visible;
+}
+
+.month-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.grass-cell {
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.1s;
+  flex-shrink: 0;
+}
+
+.grass-cell:hover {
+  outline: 1px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 1px;
+}
+
+.level-0 { background: var(--grass-0); }
+.level-1 { background: var(--grass-1); }
+.level-2 { background: var(--grass-2); }
+.level-3 { background: var(--grass-3); }
+.level-4 { background: var(--grass-4); }
+
+.grass-legend {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.legend-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: 0 2px;
+}
+
+/* ---------- Tooltip ---------- */
+
+.grass-tooltip {
+  position: fixed;
+  background: #2d333b;
+  color: #cdd9e5;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.tooltip-date {
+  font-weight: 600;
+}
+
+.tooltip-count {
+  color: #768390;
+  font-size: 11px;
+}
+
+/* ---------- Log List ---------- */
+
+.log-list {
+  list-style: none;
+}
+
+.log-item {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "date content delete"
+    ". tags .";
+  align-items: start;
+  gap: 4px 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.log-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.log-date {
+  grid-area: date;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding-top: 2px;
+  white-space: nowrap;
+}
+
+.log-content {
+  grid-area: content;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.log-tags {
+  grid-area: tags;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 1px 8px;
+  background: #1c2d3f;
+  color: #79c0ff;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.btn-delete {
+  grid-area: delete;
+  padding: 3px 10px;
+  background: none;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.btn-delete:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.empty-message {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .app-title {
+    font-size: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .log-item {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "date delete"
+      "content content"
+      "tags tags";
+  }
+
+  .log-date {
+    font-size: 0.75rem;
+  }
+}
